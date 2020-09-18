@@ -61,9 +61,9 @@ public class BlogController {
      * 查询所有博客
      * @return
      */
-    @RequestMapping(value = "/selectAll",produces="application/json;charset=UTF-8",method = RequestMethod.GET)
-    public String selectAll( BlogRequest blogRequest){
-        IPage<Blog> pageInfo =  blogService.selectAll(blogRequest);
+    @RequestMapping(value = "/selectByPage",produces="application/json;charset=UTF-8",method = RequestMethod.GET)
+    public String selectByPage( BlogRequest blogRequest){
+        IPage<Blog> pageInfo =  blogService.selectByPage(blogRequest);
         return ResponseMsgBean.getMsgJson(GlobalConstant.RESULT_CODE_8003,GlobalConstant.RESULT_MSG_8003,pageInfo);
     }
 
@@ -77,15 +77,6 @@ public class BlogController {
         return ResponseMsgBean.getMsgJson(GlobalConstant.RESULT_CODE_8003,GlobalConstant.RESULT_MSG_8003,blog);
     }
 
-    /**
-     * 根据部分标题内容模糊查询博客
-     * @return
-     */
-    @RequestMapping(value = "/selectByLike",produces="application/json;charset=UTF-8",method = RequestMethod.GET)
-    public String selectByLike(BlogRequest blogRequest){
-        IPage<Blog> blogList =  blogService.selectByLike(blogRequest);
-        return ResponseMsgBean.getMsgJson(GlobalConstant.RESULT_CODE_8003,GlobalConstant.RESULT_MSG_8003,blogList);
-    }
 
 
 

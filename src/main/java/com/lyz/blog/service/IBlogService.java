@@ -30,7 +30,7 @@ public interface IBlogService extends IService<Blog> {
      * @return
      * @param blogRequest
      */
-    IPage<Blog> selectAll(BlogRequest blogRequest);
+    IPage<Blog> selectByPage(BlogRequest blogRequest);
 
     /**
      * 根据ID查询博客
@@ -38,9 +38,4 @@ public interface IBlogService extends IService<Blog> {
      */
     Blog selectById(Long blogId);
 
-    /**
-     * 根据部分标题内容模糊查询博客
-     * @return
-     */
-    IPage<Blog> selectByLike(BlogRequest blogRequest);
 }

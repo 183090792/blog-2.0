@@ -9,6 +9,7 @@ import com.lyz.blog.common.bean.request.BlogRequest;
 import com.lyz.blog.mapper.BlogMapper;
 import com.lyz.blog.service.IBlogService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -70,9 +71,11 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper,Blog> implements IBl
      * @param blogRequest
      */
     @Override
-    public IPage<Blog> selectAll(BlogRequest blogRequest) {
+    public IPage<Blog> selectByPage(BlogRequest blogRequest) {
         QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("title",blogRequest.getTitle());
+        if(StringUtils.isNotEmpty(blogRequest.getTitle())){
+            queryWrapper.like("title",blogRequest.getTitle());
+        }
         queryWrapper.orderByDesc("create_time");
         Page<Blog> blogPage = new Page<>(blogRequest.getCurrentPage(), blogRequest.getPageSize());
         Page<Blog> page = blogMapper.selectPage(blogPage, queryWrapper);
@@ -88,17 +91,4 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper,Blog> implements IBl
         return blogMapper.selectById(blogId);
     }
 
-    /**
-     * 根据部分标题内容模糊查询博客
-     * @return
-     */
-    @Override
-    public IPage<Blog> selectByLike(BlogRequest blogRequest) {
-        QueryWrapper<Blog> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("title",blogRequest.getTitle());
-        queryWrapper.orderByDesc("create_time");
-        Page<Blog> blogPage = new Page<>(blogRequest.getCurrentPage(), blogRequest.getPageSize());
-        Page<Blog> page = blogMapper.selectPage(blogPage, queryWrapper);
-        return page;
-    }
 }

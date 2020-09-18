@@ -51,7 +51,7 @@ mybatis:
     map-underscore-to-camel-case: true
 logging:
   level:
-    com.lyz.blog.dao: debug
+    com.lyz.blog.mapper: debug
 
 
 feign:

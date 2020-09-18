@@ -1,6 +1,7 @@
 package com.lyz.blog.common.bean.entity;
 
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,7 +17,7 @@ import java.sql.Timestamp;
 @Accessors(chain = true)
 @TableName("user_info")
 public class UserInfo {
-
+@TableId
   private Integer userId;
   private String userName;
   private String password;

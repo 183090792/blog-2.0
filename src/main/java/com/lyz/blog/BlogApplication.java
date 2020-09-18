@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author intellif
  */
 @SpringBootApplication
-@MapperScan("com.lyz.blog.dao")
+@MapperScan("com.lyz.blog.mapper")
 public class BlogApplication {
 
     public static void main(String[] args) {

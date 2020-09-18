@@ -1,6 +1,7 @@
 package com.lyz.blog.common.bean.entity;
 
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
@@ -18,6 +19,7 @@ import java.sql.Timestamp;
 @TableName("blog")
 public class Blog {
 
+  @TableId
   private Integer blogId;
   private String title;
   private Integer userId;
