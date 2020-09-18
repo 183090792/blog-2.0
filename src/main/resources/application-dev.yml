@@ -1,0 +1,74 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: blog
+  datasource:
+#    多数据源配置
+    dynamic:
+      #设置默认的数据源或者数据源组,默认值即为master
+      primary: mysql
+      #设置严格模式,默认false不启动. 启动后在未匹配到指定数据源时候回抛出异常,不启动会使用默认数据源.
+      strict: false
+      datasource:
+        mysql:
+          username: "root"
+          url: jdbc:mysql://106.55.149.43:3306/blog?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+          password: "Lyz920824.@"
+          driver-class-name: com.mysql.cj.jdbc.Driver
+
+#        sqlserver:
+#          url: jdbc:sqlserver://192.168.66.81:1433;DatabaseName=YTLF20190513001
+#          driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#          username: "kf"
+#          password:
+
+#  redis:
+#    database: 0
+#    host: 192.168.70.204
+#    port: 6379
+#    flush-mode: on_save
+
+mybatis-plus:
+#  configuration:
+#    map-underscore-to-camel-case: true
+  # 如果是放在src/main/java目录下 classpath:/com/yourpackage/*/mapper/*Mapper.xml
+  # 如果是放在resource目录 classpath:/mapper/*Mapper.xml
+  #  config-location: classpath:/mybatis/mybatis-config.xml
+  mapper-locations: classpath:/mybatis/mapper/*/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.lyz.blog.common.bean.entity
+  global-config:
+    #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+    id-type: 3
+    # 热加载mapper文件
+    refresh: true
+    db-config:
+      db-type: sql_server
+# mybatis 开启驼峰
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    com.lyz.blog.dao: debug
+
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+
+ribbon:
+  ConnectTimeout: 10000 # 连接超时时长
+  ReadTimeout: 20000 # 数据通信超时时长
+  MaxAutoRetries: 0 # 当前服务器的重试次数
+  MaxAutoRetriesNextServer: 0 # 重试多少次服务
+  OkToRetryOnAllOperations: false # 是否对所有的请求方式都重试
+
+jwt:
+  secret: asdj13246sjdAwerqweSSFKsofh.asdkhfdfsadsfsdhf445646@#
+  expiration: 7200000000
+  token: Authorization
+
